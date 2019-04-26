@@ -1,0 +1,207 @@
+﻿<footer id="footer">
+    <div class="container">
+        <div class="row">
+
+
+
+
+
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                <a class="navbar-brand" href="#">
+                    <img src='@Url.Content("~/Content/Uploads/" +  ConteudoInstitucionalHelper.GetImage("LOGO_FOOTER")   )' alt="">
+                </a>
+
+
+
+            </div><!-- / -->
+
+
+
+
+
+            @if ((Convert.ToString(Session["cultura"]) == "en_US"))
+            {
+
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                    <ul class="nav nav-pills nav-stacked nav_bottom">
+                        <li role="presentation"><a href='@Url.Content("~/en_US")' title="Home">Home</a></li>
+                        <li role="presentation"><a href='@Url.Content("~/en_US/Escritorio")' title="O Escritório">Our office</a></li>
+                        <li role="presentation"><a href='@Url.Content("~/en_US/Equipe")' title="Equipe">Team</a></li>
+                        <li role="presentation"><a href='@Url.Content("~/en_US/Atuacao")' title="Atuação">Pratice Areas</a></li>
+                        <li role="presentation">
+                            <a href="javascript:void(0);" title="Comunicação">Communication</a>
+                            <ul>
+                                <li role="presentation"><a href='@Url.Content("~/en_US/Comunicacao/Noticias")' title="News">News</a></li>
+                                <li role="presentation"><a href='@Url.Content("~/en_US/Comunicacao/Clipping")' title="Clipping">Clipping</a></li>
+                                <li role="presentation"><a href='@Url.Content("~/en_US/Comunicacao/Artigos")' title="Articles">Articles</a></li>
+
+                            </ul>
+                        </li>
+                        <li role="presentation"><a href='@Url.Content("~/en_US/Contato")' title="Talk to us">Contact</a></li>
+
+                        <li role="presentation">
+                            <a href="http://servidor-dell.antonelliadv.com.br:81/" title="Portal">Portal</a>
+                        </li>
+
+
+                    </ul>
+                </div><!-- / -->
+
+            }
+            else
+            {
+
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                    <ul class="nav nav-pills nav-stacked nav_bottom">
+                        <li role="presentation"><a href='@Url.Content("~/")' title="Home">Home</a></li>
+                        <li role="presentation"><a href='@Url.Content("~/Escritorio")' title="O Escritório">O Escritório</a></li>
+                        <li role="presentation"><a href='@Url.Content("~/Equipe")' title="Equipe">Equipe</a></li>
+                        <li role="presentation"><a href='@Url.Content("~/Atuacao")' title="Atuação">Atuação</a></li>
+                        <li role="presentation">
+                            <a href="javascript:void(0);" title="Comunicação">Comunicação</a>
+                            <ul>
+                                <li role="presentation"><a href='@Url.Content("~/Comunicacao/Noticias")' title="News">News</a></li>
+                                <li role="presentation"><a href='@Url.Content("~/Comunicacao/Clipping")' title="Clipping">Clipping</a></li>
+                                <li role="presentation"><a href='@Url.Content("~/Comunicacao/Artigos")' title="Artigo">Artigos</a></li>
+
+                            </ul>
+                        </li>
+                        <li role="presentation"><a href='@Url.Content("~/Contato")' title="Contato">Contato</a></li>
+
+
+                        <li role="presentation">
+                            <a href="http://servidor-dell.antonelliadv.com.br:81/" title="Portal">Portal</a>
+                        </li>
+
+
+
+                    </ul>
+                </div><!-- / -->
+
+            }
+
+
+
+
+
+
+
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div class="" style="display:none">
+                    <h3>
+                        @((Convert.ToString(Session["cultura"]) == "en_US") ? "Signup our newsletter" : "Assine nossa News Letter"):
+
+
+                    </h3>
+                    <form class="navbar-form navbar-left" role="search">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder=' @((Convert.ToString(Session["cultura"]) == "en_US") ? "Your e-mail here" : "Seu e-mail aqui") '>
+                        </div>
+                        <button type="submit" class="btn">@((Convert.ToString(Session["cultura"]) == "en_US") ? "Submit" : "Enviar")</button>
+                    </form>
+                </div><!-- / -->
+                <div class="">
+                    <h3>
+                        @Html.Raw(ConteudoInstitucionalHelper.GetText(Convert.ToString(Session["cultura"]), "TIT-CONTATO-Rodape"))
+
+
+
+
+
+
+                    </h3>
+
+
+
+
+
+
+                    <div id="dvenderecos">
+
+                    </div>
+                    <script type="application/html-template" id="template-endereco">
+                        <p>
+                            <strong>{Bairro}:</strong> {Logradouro}, {Numero}, {Complemento} - {Cidade} - {UF}
+                        </p>
+                        <p>
+                            {Telefone}
+                        </p>
+                    </script>
+
+
+
+
+
+
+
+
+                </div><!-- / -->
+            </div><!-- / -->
+
+
+
+
+
+            <div style="position:absolute;margin-top:265px;margin-left:26px;" class="visible-md visible-lg">
+                <a target="_blank" href="http://www.thdcriativa.com.br" title="Criado por THD Criativa®">
+                    <img src="/Content/img/made-in-thd.png" alt="Made In THD">
+                </a>
+            </div>
+
+            <div style="margin-top:160px;text-align:center;" class="hidden-md hidden-lg">
+                <a target="_blank" href="http://www.thdcriativa.com.br" title="Criado por THD Criativa®">
+                    <img src="/Content/img/made-in-thd.png" alt="Made In THD">
+                </a>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+        </div><!-- /row -->
+
+
+
+    </div><!-- /container -->
+</footer>
+<script type="text/javascript" src="~/Scripts/vendor.min.js"></script>
+<script type="text/javascript" src="~/Scripts/app.min.js"></script>
+
+
+<script type="text/javascript">
+
+    $.ajax({
+        url: "/api/enderecos/h"
+
+    }).done(function (data, sts) {
+
+        var htmlSaida = "";
+
+        $(data.data).each(function (idx, obj) {
+
+            htmlSaida += $("#template-endereco").html()
+            .replace(/{id_endereco}/g, obj.id_endereco)
+            .replace(/{Bairro}/g, obj.Bairro)
+            .replace(/{Logradouro}/g, obj.Logradouro)
+            .replace(/{Numero}/g, obj.Numero)
+            .replace(/{Complemento}/g, obj.Complemento)
+            .replace(/{Cidade}/g, obj.Cidade)
+                .replace(/{Telefone}/g, obj.Telefone)
+            .replace(/{UF}/g, obj.UF);
+
+        })//each
+
+        $("#dvenderecos").html(htmlSaida);
+
+    });//done
+
+
+
+
+</script>

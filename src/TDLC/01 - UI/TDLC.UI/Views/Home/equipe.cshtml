@@ -1,0 +1,382 @@
+﻿@model TDLC.UI.Models.EquipeSiteViewmodel
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="pt-br"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="pt-br"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="pt-br"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="pt-br">
+<!--<![endif]-->
+<head>
+    @Html.Partial("_head")
+
+</head>
+<body class="equipe">
+    <!-- ==============================================
+    Preloader
+    =============================================== -->
+
+    @Html.Partial("_preloader")
+
+
+    <!-- ==============================================
+    Header
+    =============================================== -->
+    <header id="header" style='background-image: url("@Url.Content("~/Content/img/header/header_equipe.jpg")");'>
+
+        @Html.Partial("_header")
+
+
+
+        <div class="wrap">
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h2 class="title-default">@Html.Raw(ConteudoInstitucionalHelper.GetText(Convert.ToString(Session["cultura"]), "TIT-PAG_Equipe"))</h2>
+                    </div><!-- /.col-lg-5 -->
+                </div><!-- /.row -->
+            </div><!-- /.container -->
+
+        </div>
+
+
+
+    </header><!-- /header -->
+    <!-- ==============================================
+    CONTEUDO
+    =============================================== -->
+
+
+
+    <section class="equipe-fundador" style='background-image: url(@Url.Content("~/Content/img/equipe_background_fundador.jpg"));'>
+        <div class="container" style='background-image: url("@Url.Content("~/Content/Uploads/"+ Model.SocioFundador.FotoDestaque )");'>
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3 class="title-type01">@Model.SocioFundador.Conteudos[0].Cargo</h3>
+                </div><!-- /col -->
+            </div><!-- /row -->
+
+            <div class="row info">
+                <div class="col-lg-5">
+                    <h2>@Model.SocioFundador.Nome </h2>
+                    <p>
+                        @Html.Raw(Model.SocioFundador.Conteudos[0].Chamada)
+                    </p>
+                    <a class="btn btn-default" href="javascript:void(0);" data-toggle="modal" data-target=".modalFundador">
+                    
+                    @ConteudoInstitucionalHelper.GetText(Convert.ToString(Session["cultura"]), "BTN_SAIBA_MAIS")
+                    
+                     <span class="ico type01" aria-hidden="true"></span></a>
+                </div><!-- /.col-lg-5 -->
+            </div><!-- /.row -->
+        </div><!-- /container -->
+    </section>
+
+
+
+    <section class="">
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3 class="title-type01">
+
+                        @Html.Raw(ConteudoInstitucionalHelper.GetText(Convert.ToString(Session["cultura"]), "SUBTIT-PAG_Socios"))
+
+
+
+                    </h3>
+                    <div class="row center-col">
+
+                        @foreach (var socio in Model.Socios)
+                        {
+
+
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-10">
+                                <figure class="img-type01" data-toggle="modal" data-target=".socio_@socio.id_equipe">
+                                    <img src='@Url.Content("~/Content/Uploads/" + socio.FotoDestaque )' class="img-responsive" alt="">
+                                    <figcaption>
+                                        <h4>
+                                            @socio.Nome
+                                        </h4>
+                                        <h5>
+                                            @socio.Conteudos[0].AreasAtuacao
+                                        </h5>
+                                    </figcaption>
+                                </figure><!-- /img-type01 -->
+                            </div>
+
+                        }
+
+
+                        <!-- /col -->
+
+
+
+                    </div><!-- /center-col -->
+                </div><!-- /col -->
+            </div><!-- /row -->
+
+
+
+
+
+
+
+
+
+
+            <div class="row item-atuacao">
+                <div class="col-lg-12">
+                    <h3 class="title-type01">
+
+                        @Html.Raw(ConteudoInstitucionalHelper.GetText(Convert.ToString(Session["cultura"]), "SUBTIT-PAG_Team"))
+
+
+
+
+                    </h3>
+
+
+                    <ul class="list-nomes">
+                        @foreach (var advogado in Model.Advogados)
+                        {
+                            <li>
+                                <a href="javascript:void(0);" data-toggle="modal" data-target=".equipe_@advogado.id_equipe">@advogado.Nome</a>
+                            </li>
+                        }
+                    </ul><!-- /list-nomes -->
+
+
+                    <br /><br /><br />
+
+                    <ul class="list-nomes">
+                        @foreach (var advogado in Model.Equipes)
+                        {
+                            <li>
+                                <a href="javascript:void(0);" data-toggle="modal" data-target=".equipe_@advogado.id_equipe">@advogado.Nome</a>
+                            </li>
+                        }
+                    </ul><!-- /list-nomes -->
+
+
+
+
+
+
+
+                </div><!-- /col -->
+            </div><!-- /row -->
+
+
+
+
+
+
+
+        </div><!-- /container -->
+    </section><!-- / -->
+    <!-- ==============================================
+    Footer
+    =============================================== -->
+
+    @Html.Partial("_footer")
+
+
+
+    <!-- ==============================================
+    MODAIS
+    =============================================== -->
+    <!-- FUNDADOR -->
+    <div class="modal fade modalFundador" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+                </div><!-- /.modal-header -->
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img src='@Url.Content("~/Content/Uploads/"+ Model.SocioFundador.FotoPopup )' alt="" class="img-responsive">
+                        </div>
+                        <div class="col-md-8">
+                            <h2 class="title-color">
+                                @Model.SocioFundador.Nome
+                            </h2>
+                            <h5 class="sub-title">
+
+                                    @Model.SocioFundador.Conteudos[0].Cargo
+                            </h5>
+
+                            <p>                         @Html.Raw(Model.SocioFundador.Conteudos[0].Descricao)</p>   
+
+                        </div>
+                    </div><!-- /.row -->
+                </div><!-- /.modal-body -->
+                <div class="modal-footer">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p>
+                                <span class="color">@Html.Raw(ConteudoInstitucionalHelper.GetText(Convert.ToString(Session["cultura"]), "TIT-POPUP-Equipe-Area-de-Atuacao")):</span> @Model.SocioFundador.Conteudos[0].AreasAtuacao
+                            </p>
+                        </div>
+                    </div><!-- /.row -->
+                </div><!-- /.modal-footer -->
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <!-- SOCIOS -->
+    @foreach (var socio in Model.Socios)
+    {
+        <div class="modal fade modalSocios socio_@socio.id_equipe" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+                    </div><!-- /.modal-header -->
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                <img src='@Url.Content("~/Content/Uploads/" +  socio.FotoPopup )' alt="" class="img-responsive">
+                            </div>
+                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                                <h2 class="title-color">
+                                    @socio.Nome
+                                </h2>
+                                <h5 class="sub-title">
+                                    @socio.Conteudos[0].Cargo
+                                </h5>
+                                <p>
+                                    @Html.Raw(socio.Conteudos[0].Descricao)
+                                </p>
+
+                            </div>
+                        </div><!-- /.row -->
+                    </div><!-- /.modal-body -->
+                    <div class="modal-footer">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <p>
+
+                                    
+
+                                    
+
+
+
+
+
+
+                                    <span class="color">@Html.Raw(ConteudoInstitucionalHelper.GetText(Convert.ToString(Session["cultura"]), "TIT-POPUP-Equipe-Area-de-Atuacao")):</span> @socio.Conteudos[0].AreasAtuacao
+                                </p>
+                            </div>
+                        </div><!-- /.row -->
+                    </div><!-- /.modal-footer -->
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+    }
+
+    <!-- ADVOGADOS -->
+    @foreach (var advogado in Model.Advogados)
+    {
+        <div class="modal fade modalEquipe equipe_@advogado.id_equipe" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+                    </div><!-- /.modal-header -->
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <h2 class="title-color">
+                                    @advogado.Nome
+                                </h2>
+                                <h5 class="sub-title">
+                                    @advogado.Conteudos[0].Cargo
+                                </h5>
+
+                                <h6 class="sub-title" style="font-size:13px !important;">
+                                    Email: @advogado.Email
+                                </h6>
+
+
+
+                                <p>
+                                    @Html.Raw(advogado.Conteudos[0].Descricao)
+                                </p>
+                            </div>
+                        </div><!-- /.row -->
+                    </div><!-- /.modal-body -->
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+    }
+
+
+
+    <!-- Equipe -->
+    @foreach (var advogado in Model.Equipes.Where(f => !string.IsNullOrEmpty(f.Email)))
+    {
+        <div class="modal fade modalEquipe equipe_@advogado.id_equipe" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+                    </div><!-- /.modal-header -->
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <h2 class="title-color">
+                                    @advogado.Nome
+                                </h2>
+                                <h5 class="sub-title">
+                                    @advogado.Conteudos[0].Cargo
+                                </h5>
+
+                                <h6 class="sub-title" style="font-size:13px !important;">
+                                    Email: @advogado.Email
+                                </h6>
+
+
+
+                                <p>
+                                    @Html.Raw(advogado.Conteudos[0].Descricao)
+                                </p>
+                            </div>
+                        </div><!-- /.row -->
+                    </div><!-- /.modal-body -->
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

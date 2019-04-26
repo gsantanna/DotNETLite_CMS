@@ -1,0 +1,241 @@
+﻿@model TDLC.UI.Models.PublicacoesSiteViewmodel
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="pt-br"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="pt-br"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="pt-br"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="pt-br">
+<!--<![endif]-->
+<head>
+    @Html.Partial("_head")
+</head>
+<body class="news" id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+    <!-- ==============================================
+    Preloader
+    =============================================== -->
+
+
+    @Html.Partial("_preloader")
+
+
+    <!-- ==============================================
+    Header
+    =============================================== -->
+    <header id="header" style="background-image: url('@Url.Content("~/Content/img/header/" + ViewBag.imgheader + "") ');">
+
+        @Html.Partial("_header")
+
+
+
+        <div class="wrap">
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+
+
+                        <h2 class="title-default">
+                            @Html.Raw(ConteudoInstitucionalHelper.GetText(Convert.ToString(Session["cultura"]), "TIT-PAG_" + ViewBag.Tipo))
+                        </h2>
+
+
+                    </div><!-- /.col-lg-5 -->
+                </div><!-- /.row -->
+            </div><!-- /.container -->
+
+            </div>
+
+
+</header><!-- /header -->
+    <!-- ==============================================
+    CONTEUDO
+    =============================================== -->
+    <section class="">
+        <div class="container">
+
+
+
+
+
+            @if (Model.DestaqueTopo != null)
+            {
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 item item-news destaque">
+                        <div class="inner">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <img class="img-responsive" src='@Url.Content("~/Content/Uploads/" + Model.DestaqueTopo.Conteudos[0].Imagem3  )' alt="@Model.DestaqueTopo.Titulo">
+                                </div><!-- /col -->
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <h2> @Model.DestaqueTopo.Conteudos[0].Destaque_Categoria   </h2>
+                                    <h3>@Model.DestaqueTopo.Conteudos[0].Destaque_Titulo </h3>
+                                    <p>
+                                        @Model.DestaqueTopo.Conteudos[0].Destaque_Texto
+                                    </p>
+                                    <a class="btn btn-default" href='@Url.Content(string.Format("~/comunicacao/{0}/{1}" ,  ViewBag.Tipo , Model.DestaqueTopo.URL ))' role="button">saiba mais <span class="ico type02" aria-hidden="true"></span></a>
+                                </div><!-- /col -->
+                            </div><!-- /row -->
+                        </div><!-- /inner -->
+                    </div><!-- / -->
+                </div><!-- /row -->
+            }
+
+            <div class="row">
+
+
+                @foreach (var item in Model.DestaqueMedio)
+                {
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 item item-news">
+                        <div class="inner">
+                            <h2>   @item.Conteudos[0].Destaque_Categoria </h2>
+                            <h3>@item.Conteudos[0].Destaque_Titulo</h3>
+                            <p>
+                                @item.Conteudos[0].Destaque_Texto
+                            </p>
+                            <a class="btn btn-default" href='@Url.Content(string.Format("~/comunicacao/{0}/{1}" ,  ViewBag.Tipo , item.URL ))' role="button">saiba mais <span class="ico type02" aria-hidden="true"></span></a>
+                        </div><!-- /inner -->
+                    </div><!-- / -->
+                }
+
+
+
+
+
+
+
+
+            </div><!-- /row -->
+        </div><!-- /container -->
+    </section><!-- / -->
+
+
+
+
+
+
+
+
+    <section   style='display:@(Model.Publicacoes.Count > 0 ? "block" : "none" ) '>  >
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3 class="title-type01">Notícias anteriores</h3>
+
+                    <ul class="list-news" style="min-height:289px;">
+
+                        @{
+                            int i = 0;
+                        }
+
+                        @foreach (var item in Model.Publicacoes.OrderByDescending(f => f.DataPublicacao))
+                        {
+
+                            <li class="list-news-item" style='display:@(i < 5  ? "block" : "none" )' data-pagina="@Math.Ceiling((i+1)/5.0)">
+
+                                <a href='@Url.Content(string.Format("~/comunicacao/{0}/{1}" ,  ViewBag.Tipo , item.URL ))'>
+                                    @item.Titulo
+                                </a>
+                            </li>
+
+                            i++;
+                        }
+                    </ul>
+                </div><!-- / -->
+            </div><!-- /row -->
+
+            <nav aria-label="Page navigation" style='display:@(Model.Publicacoes.Count > 5 ? "block" : "none" ) '>
+                <ul class="pagination">
+                    <li class="pagination-voltar">
+                        <a href="javascript:void(0);" id="btnPaginacaoVoltar" aria-label="Previous">
+                            <span class="ico type02" aria-hidden="true"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" id="btnPaginacaoAvancar" aria-label="Next">
+                            <span class="ico type02" aria-hidden="true"></span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div><!-- /container -->
+    </section><!-- / -->
+    <!-- ==============================================
+    Footer
+    =============================================== -->
+
+
+
+    @Html.Partial("_footer")
+
+
+
+
+
+    <script type="text/javascript">
+
+
+        var mudaPagina = function (pagina) {
+            paginaAtual = pagina;
+            atualizaPager();
+        }
+
+        //desenha o paginador
+
+        $("#btnPaginacaoAvancar").click(function () {
+
+            paginaAtual++;
+            atualizaPager();
+
+        });
+
+        $("#btnPaginacaoVoltar").click(function () {
+
+            paginaAtual--;
+            atualizaPager();
+
+        });
+
+
+
+        var paginaAtual = 1;
+        var totalPaginas = 1;
+
+        $(document).ready(function () {
+            //calcula o total de páginas
+            totalPaginas = Math.ceil($(".list-news-item").length / 5.0);
+
+
+
+            var strItens = "";
+            for (i = 1; i <= totalPaginas; i++) {
+
+                strItens += "<li class='item-pager item-pager-" + i + "'><a href='javascript:void(0);'  onclick='mudaPagina(" + i + ")'>" + i + "</a></li>";
+
+            }
+
+            $(strItens).insertAfter(".pagination-voltar");
+
+            atualizaPager(true);
+
+        });
+
+
+        var atualizaPager = function (inicial) {
+            if (paginaAtual > totalPaginas) paginaAtual = 1;
+            if (paginaAtual < 1) paginaAtual = totalPaginas;
+
+
+            if (!inicial) {
+                $(".list-news-item").hide();
+                $(".list-news [data-pagina='" + paginaAtual + "']").fadeIn();
+            }
+
+            $(".item-pager").removeClass("active");
+            $(".item-pager-" + paginaAtual).addClass("active");
+        }
+
+
+    </script>
+
+</body>
+</html>

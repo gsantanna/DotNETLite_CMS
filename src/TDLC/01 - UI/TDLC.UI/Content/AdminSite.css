@@ -1,0 +1,43 @@
+﻿
+
+.control-label {
+    text-align: left !important;
+}
+
+.tab-pane {
+    border-left: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    padding-left: 20px;
+    padding-top: 25px;
+    padding-right: 20px;
+}
+
+
+
+    .tab-pane row {
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+
+
+.box-upload {
+    border-top: 1px solid #dbdbdb;
+    border-left: 1px solid #dbdbdb;
+    border-right: 1px solid #dbdbdb;
+    margin-left: 0px;
+    margin-right: 0px;    
+}
+
+.box-upload:last-child {
+    
+    margin-bottom:20px;
+    border-bottom:1px solid #dbdbdb;
+
+}
+
+
+
+.nav-tabs {
+    margin-bottom:0px !important;
+}

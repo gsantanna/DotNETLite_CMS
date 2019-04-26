@@ -1,0 +1,251 @@
+﻿@model TDLC.UI.Models.AreaAtuacaoSiteViewmodel
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="pt-br"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="pt-br"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="pt-br"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="pt-br">
+<!--<![endif]-->
+<head>
+    @Html.Partial("_head")
+</head>
+<body class="atuacao" id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+    <!-- ==============================================
+    Preloader
+    =============================================== -->
+
+    @Html.Partial("_preloader")
+
+    <!-- ==============================================
+    Header
+    =============================================== -->
+    <header id="header" style="background-image: url('@Url.Content("~/Content/img/header/header_atuacao.jpg")');">
+        @Html.Partial("_header")
+
+
+
+        <div class="wrap">
+
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+
+                        <h2 class="title-default">   @Html.Raw(ConteudoInstitucionalHelper.GetText(Convert.ToString(Session["cultura"]), "TIT-PAG_Atuacao")) </h2>
+
+                    </div><!-- /.col-lg-5 -->
+                </div><!-- /.row -->
+            </div><!-- /.container -->
+        </div>
+
+
+    </header><!-- /header -->
+    <!-- ==============================================
+    CONTEUDO
+    =============================================== -->
+    <section class="">
+        <div class="container">
+
+
+
+
+
+            <div class="row item-atuacao destaque">
+
+
+                @foreach (var item in Model.Areas.OrderBy(f => f.Ordem))
+                {
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                        <a href="#area_@item.id_areatuacao" class="inner page-scroll" title="Direito Tributário">
+                            <img src='@Url.Content("~/Content/Uploads/"+ item.Imagem  )' class="img-responsive" alt="@item.Conteudos[0].Nome">
+                            <h4> @item.Conteudos[0].Nome </h4>
+                        </a><!-- /inner -->
+                    </div><!-- /col -->
+                }
+            </div><!-- /row -->
+
+
+
+            @foreach (var item in Model.Areas.OrderBy(f => f.Ordem))
+            {
+                <div class="row item-atuacao">
+                    <span class="anchor" id="area_@item.id_areatuacao"></span>
+                    <div class="col-lg-12">
+                        <h3 class="title-type01">@item.Conteudos[0].Nome  </h3>
+                        <div class="row">
+                            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                                <h4>@item.Conteudos[0].Chamada </h4>
+                            </div><!-- /col -->
+                            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                                <p>
+                                    @Html.Raw(item.Conteudos[0].Conteudo)
+                                </p>
+                            </div><!-- /col -->
+                        </div><!-- /row -->
+
+
+
+                        <div class="row item-links">
+                            @foreach (var destaque in item.Filhos.Where(f => f.Destaque).OrderBy(f => f.Ordem))
+                            {
+                                <a class="col-lg-4 col-md-4 col-sm-4 col-xs-12" href="javascript:void(0);" data-toggle="modal" data-target=".modalSubArea_@destaque.id_areatuacao" title="@destaque.Conteudos[0].Nome">
+                                    @destaque.Conteudos[0].Nome
+                                </a><!-- /col -->
+                            }
+                        </div><!-- /row -->
+
+
+                        <a class="btn btn-default btn-extras" href="javascript:void(0);" role="button">
+
+                            @( Convert.ToString(Session["cultura"]) == "en_US" ? "+ acting" : "+ atuações ")
+
+
+                        </a>
+
+
+
+                        <div class="extras">
+
+                            @{
+                                var qtdPorPagina = 3;
+                                var i = 1;
+                            }
+
+                            <div class="row item-links">
+
+                                @foreach (var normal in item.Filhos.Where(f => !f.Destaque).OrderBy(f => f.Ordem))
+                                {
+                                    if (i > qtdPorPagina)
+                                    {
+                                        @Html.Raw("</div><div class='row item-links'>")
+                                        i = 0;
+                                    }
+
+                                    <a class="col-lg-4 col-md-4 col-sm-4 col-xs-12" href="javascript:void(0);" data-toggle="modal" data-target=".modalSubArea_@normal.id_areatuacao" title="@normal.Conteudos[0].Nome">
+                                        @normal.Conteudos[0].Nome
+                                    </a>
+
+
+
+                                    i++;
+                                }
+
+                            </div>
+
+
+
+
+                        </div><!-- /extras -->
+
+
+
+                    </div><!-- / @item.Nome -->
+                </div><!-- /row -->
+
+                                }
+
+
+
+
+
+            </div><!-- /containe
+
+
+
+
+
+
+        </div><!-- /container -->
+    </section><!-- / -->
+    <!-- ==============================================
+    Footer
+    =============================================== -->
+    @Html.Partial("_footer")
+
+
+
+    <!-- ==============================================
+    MODAIS
+    =============================================== -->
+
+    @foreach (var itempai in Model.Areas)
+    {
+        if (string.IsNullOrWhiteSpace(itempai.Conteudos[0].Conteudo))
+        {
+            <div class="modal fade modalSubArea_@itempai.id_areatuacao" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+                        </div><!-- /.modal-header -->
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h2 class="title-color">
+
+                                        @itempai.Conteudos[0].Nome
+                                    </h2>
+                                    <p>
+                                        @itempai.Conteudos[0].Conteudo
+                                    </p>
+
+                                </div>
+                            </div><!-- /.row -->
+                        </div><!-- /.modal-body -->
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+
+        }
+
+
+        foreach (var itemfilho in itempai.Filhos)
+        {
+            if (!string.IsNullOrWhiteSpace(itemfilho.Conteudos[0].Conteudo))
+            {
+
+
+
+                <div class="modal fade modalSubArea_@itemfilho.id_areatuacao" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+                            </div><!-- /.modal-header -->
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h2 class="title-color">
+
+                                            @itemfilho.Nome
+                                        </h2>
+                                        <p>
+                                            @itemfilho.Conteudos[0].Conteudo
+                                        </p>
+
+                                    </div>
+                                </div><!-- /.row -->
+                            </div><!-- /.modal-body -->
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
+
+            }
+
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

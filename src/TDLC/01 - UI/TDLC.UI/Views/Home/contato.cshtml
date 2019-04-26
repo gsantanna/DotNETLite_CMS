@@ -1,0 +1,264 @@
+﻿@model TDLC.UI.Models.ContatoFormViewmodel
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="pt-br"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="pt-br"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="pt-br"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="pt-br">
+<!--<![endif]-->
+<head>
+    @Html.Partial("_head")
+
+</head>
+<body class="contato" id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+    <!-- ==============================================
+    Preloader
+    =============================================== -->
+
+    @Html.Partial("_preloader")
+
+
+    <!-- ==============================================
+    Header
+    =============================================== -->
+    <header id="header" style="background-image: url('@Url.Content("~/Content/img/header/header_contato.jpg")');">
+        @Html.Partial("_header")
+
+
+
+        <div class="wrap">
+
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+
+                        <h2 class="title-default">  @Html.Raw(ConteudoInstitucionalHelper.GetText(Convert.ToString(Session["cultura"]), "TIT-PAG_Contato")) </h2>
+
+
+
+                    </div><!-- /.col-lg-5 -->
+                </div><!-- /.row -->
+            </div><!-- /.container -->
+        </div>
+
+
+
+
+    </header><!-- /header -->
+    <!-- ==============================================
+    CONTEUDO
+    =============================================== -->
+    <section class="">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 endereco">
+
+
+
+                    @foreach (TDLC.UI.Areas.Admin.Models.ViewModels.EnderecoViewmodel endereco in ViewBag.Enderecos)
+                    {
+
+                        <div class="inner">
+                            <h2 class="title-default">
+                                @endereco.Cidade
+                            </h2>
+
+                            @if (endereco.ESede)
+                            {
+                                <h3 class="title-default sede">
+                                    @endereco.Bairro
+                                </h3>
+
+                            }
+                            else
+                            {
+                                <h3 class="title-default ">
+                                    @endereco.Bairro
+                                </h3>
+                            }
+
+
+
+                            <ul>
+
+                                @if (!string.IsNullOrWhiteSpace(endereco.Telefone))
+                                {
+                                    <li class="tel">
+                                        @endereco.Telefone
+                                    </li>
+
+                                }
+
+
+
+                                <li class="end">
+                                    @endereco.Logradouro, @endereco.Numero, @endereco.Complemento, <br>@endereco.Bairro, @endereco.Cidade/@endereco.UF, @endereco.CEP
+                                    <a href="javascript:void(0);" data-toggle="modal" data-target=".modalMapa_@endereco.id_endereco">ver mapa</a>
+                                </li>
+                            </ul>
+                        </div><!-- /inner -->
+                    }
+
+
+
+
+
+
+
+                </div><!-- / -->
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <div class="inner">
+                        <h2 class="title-default">
+
+                            @Html.Raw(ConteudoInstitucionalHelper.GetText(Convert.ToString(Session["cultura"]), "SUBTIT-PAG_FaleConosco"))
+
+
+
+
+
+                        </h2>
+
+                        @using (Html.BeginForm("Conrta", "Equipe", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+                        {
+                            @Html.AntiForgeryToken()
+
+
+                            <div class="form-group">
+                                <label for="inputNome">Nome *</label>
+                                @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control", @style = "max-width:100%;width:100%" } })
+                                @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="inputNome">Email *</label>
+                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @style = "max-width:100%;width:100%" } })
+                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="inputNome">Telefone *</label>
+                                @Html.EditorFor(model => model.Telefone, new { htmlAttributes = new { @class = "form-control", @style = "max-width:100%;width:100%" } })
+                                @Html.ValidationMessageFor(model => model.Telefone, "", new { @class = "text-danger" })
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="inputNome">Assunto *</label>
+                                @Html.EditorFor(model => model.Assunto, new { htmlAttributes = new { @class = "form-control", @style = "max-width:100%;width:100%" } })
+                                @Html.ValidationMessageFor(model => model.Assunto, "", new { @class = "text-danger" })
+                            </div>
+
+
+
+
+                            <div class="form-group">
+                                <label for="inputMensagem">Mensagem *</label>
+
+                                @Html.TextAreaFor(model => model.Mensagem, new { @class = "form-control", @style = "max-width:100%;width:100%" })
+                                @Html.ValidationMessageFor(model => model.Mensagem, "", new { @class = "text-danger" })
+
+
+                            </div>
+
+
+
+                            <button type="submit" class="btn btn-default">
+                                Enviar
+                                <span class="ico type02" aria-hidden="true"></span>
+                            </button>
+
+                        }
+
+
+                    </div><!-- /inner -->
+                </div><!-- / -->
+            </div><!-- /row -->
+        </div><!-- /container -->
+    </section><!-- / -->
+    <!--
+    <section class="googlemaps">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3673.0846284413433!2d-43.20525438450342!3d-22.98391528497262!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9bd51aa6dee2d7%3A0x504fa115bd19680!2sR.+Vin%C3%ADcius+de+Moraes%2C+111+-+Ipanema%2C+Rio+de+Janeiro+-+RJ%2C+22411-010!5e0!3m2!1spt-BR!2sbr!4v1477166729126" width="100%" height="670px" frameborder="0" style="border:0" allowfullscreen></iframe>
+    </section>
+    /googlemaps -->
+    <!-- ==============================================
+    Footer
+    =============================================== -->
+    @Html.Partial("_footer")
+    <!-- ==============================================
+    MODAIS
+    =============================================== -->
+
+
+
+    @foreach (TDLC.UI.Areas.Admin.Models.ViewModels.EnderecoViewmodel endereco in ViewBag.Enderecos)
+    {
+        <div class="modal fade modalMapa_@endereco.id_endereco" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+                    </div><!-- /.modal-header -->
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2 class="title-color">
+                                    @endereco.Bairro
+                                </h2>
+                                <p class="end">
+                                    @endereco.Logradouro, @endereco.Numero, @endereco.Complemento, <br>@endereco.Bairro, @endereco.Cidade/@endereco.UF, @endereco.CEP
+                                </p>
+                            </div>
+                        </div><!-- /.row -->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <iframe src="@endereco.Mapa" width="100%" height="410px" frameborder="0" style="border:0" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div><!-- /.modal-body -->
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+    @Scripts.Render("~/bundles/jqueryval")
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var resp = '@ViewBag.status';
+
+
+            if (resp == "OK") {
+                alert("Sua mensagem foi enviada com sucesso!");
+                window.location = '@Url.Content("~/")';
+            }
+        })
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,248 @@
+﻿<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="pt-br"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="pt-br"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="pt-br"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="pt-br">
+<!--<![endif]-->
+<head>
+    @Html.Partial("_head")
+
+</head>
+<body class="escritorio" id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+    <!-- ==============================================
+    Preloader
+    =============================================== -->
+    @Html.Partial("_preloader")
+
+
+
+    <!-- ==============================================
+    Header
+    =============================================== -->
+    <header id="header" style="background-image: url('@Url.Content("~/Content/img/header/header_escritorio.jpg")');">
+
+        @Html.Partial("_header")
+
+
+
+
+        <div class="wrap">
+
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h2 class="title-default">  @Html.Raw(ConteudoInstitucionalHelper.GetText(Convert.ToString(Session["cultura"]), "TIT-PAG_O-Escritorio")) </h2>
+                    </div><!-- /.col-lg-5 -->
+                </div><!-- /.row -->
+            </div><!-- /.container -->
+
+        </div>
+
+
+    </header><!-- /header -->
+    <!-- ==============================================
+    CONTEUDO
+    =============================================== -->
+    <section class="first">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <h2 class="title-cat"> 
+
+                        @Html.Raw(ConteudoInstitucionalHelper.GetText(Convert.ToString(Session["cultura"]), "TXT_Intro_O-Escritorio_Chamada"))
+
+                    </h2>
+                </div><!-- /col -->
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <p>
+                        @Html.Raw(ConteudoInstitucionalHelper.GetText(Convert.ToString(Session["cultura"]), "TXT_Intro_Esquerda"))
+                    </p>
+
+                </div><!-- /col -->
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+
+                    <p>
+                        @Html.Raw(ConteudoInstitucionalHelper.GetText(Convert.ToString(Session["cultura"]), "TXT_Intro_Direita"))
+                    </p>
+
+
+
+
+                </div><!-- /col -->
+            </div><!-- /row -->
+        </div><!-- /container -->
+    </section><!-- /first -->
+    <!-- ==============================================
+    CITACAO
+    =============================================== -->
+    <section class="sec_cite">
+        <div class="container">
+            <div class="row">
+                <blockquote class="col-lg-offset-7 col-lg-5 col-md-offset-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="inner">
+                        <p>
+                            @Html.Raw(ConteudoInstitucionalHelper.GetText(Convert.ToString(Session["cultura"]), "TXT_Depoimento_O-Escritorio"))
+                        </p>
+                        <footer>
+                            <h2>
+                                @Html.Raw(ConteudoInstitucionalHelper.GetText(Convert.ToString(Session["cultura"]), "TXT_Depoente_O-Escritorio"))
+                                <span>
+                                    @Html.Raw(ConteudoInstitucionalHelper.GetText(Convert.ToString(Session["cultura"]), "TXT_Cargo-Depoente_O-Escritorio"))
+                                </span>
+                            </h2>
+                        </footer>
+                    </div><!-- /inner -->
+                </blockquote><!-- /col -->
+            </div><!-- /row -->
+        </div><!-- /container -->
+    </section><!-- /sec_cite -->
+    <!-- ==============================================
+    RAZOES PARA CRER
+    =============================================== -->
+    <section class="sec_razoes">
+        <div class="container">
+            <div class="row desktop">
+                <div class="col-lg-12">
+
+                    <img src='@Url.Content("~/Content/img/"  + ConteudoInstitucionalHelper.GetText( Convert.ToString(Session["cultura"]),"IMG_Razoes")                   )' alt="" class="img-responsive">
+
+                    <div class="text missao">
+                        <p>
+
+                            @Html.Raw(ConteudoInstitucionalHelper.GetText(Convert.ToString(Session["cultura"]), "TXT_Missao_O-Escritorio"))
+
+
+
+
+                        </p>
+                    </div>
+                    <div class="text valores">
+                        <p>
+                            @Html.Raw(ConteudoInstitucionalHelper.GetText(Convert.ToString(Session["cultura"]), "TXT_Valores_O-Escritorio"))
+
+
+
+                        </p>
+                    </div>
+                    <div class="text visao">
+                        <p>
+
+                            @Html.Raw(ConteudoInstitucionalHelper.GetText(Convert.ToString(Session["cultura"]), "TXT_Visao_O-Escritorio"))
+
+
+                        </p>
+                    </div>
+                </div><!-- /col -->
+            </div><!-- /row -->
+            <div class="mobile">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h2>
+
+
+                            @Html.Raw(ConteudoInstitucionalHelper.GetText(Convert.ToString(Session["cultura"]), "TIT_Razoes-Para_Crer_O-Escritorio"))
+
+                        </h2>
+                    </div>
+                </div><!-- /row -->
+                <div class="row">
+                    <div class="col-xs-4">
+                        <h3>
+                            @Html.Raw(ConteudoInstitucionalHelper.GetText(Convert.ToString(Session["cultura"]), "TIT_Missao_O-Escritorio"))
+
+                        </h3>
+                    </div>
+                    <div class="col-xs-8">
+                        <p>
+                            @Html.Raw(ConteudoInstitucionalHelper.GetText(Convert.ToString(Session["cultura"]), "TXT_Missao_O-Escritorio"))
+
+
+                        </p>
+                    </div>
+                </div><!-- /row -->
+                <div class="row">
+                    <div class="col-xs-4">
+                        <h3>
+                            @Html.Raw(ConteudoInstitucionalHelper.GetText(Convert.ToString(Session["cultura"]), "TIT_Valores_O-Escritorio"))
+                        </h3>
+                    </div>
+                    <div class="col-xs-8">
+                        <p>
+                            @Html.Raw(ConteudoInstitucionalHelper.GetText(Convert.ToString(Session["cultura"]), "TXT_Valores_O-Escritorio"))
+                        </p>
+                    </div>
+                </div><!-- /row -->
+                <div class="row">
+                    <div class="col-xs-4">
+                        <h3>
+
+                            @Html.Raw(ConteudoInstitucionalHelper.GetText(Convert.ToString(Session["cultura"]), "TIT_Visao_O-Escritorio"))
+
+
+                        </h3>
+                    </div>
+                    <div class="col-xs-8">
+                        <p>
+                            @Html.Raw(ConteudoInstitucionalHelper.GetText(Convert.ToString(Session["cultura"]), "TXT_Visao_O-Escritorio"))
+                        </p>
+                    </div>
+                </div><!-- /row -->
+            </div><!-- /mobile -->
+        </div><!-- /container -->
+    </section><!-- /sec_razoes -->
+    <!-- ==============================================
+    HISTORIA
+    =============================================== -->
+    <section class="sec_historia">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <h2 class="sub-title">
+                        @Html.Raw(ConteudoInstitucionalHelper.GetText(Convert.ToString(Session["cultura"]), "TIT_SubArea-04_O-Escritorio"))
+                    </h2>
+                    <p>
+                        @Html.Raw(ConteudoInstitucionalHelper.GetText(Convert.ToString(Session["cultura"]), "TXT_SubArea-04-Esquerda_O-Escritorio"))
+                    </p>
+
+                </div><!-- /col -->
+                <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12 destaque">
+                    <div class="">
+                        <h2 class="sub-title noShow">
+                            @Html.Raw(ConteudoInstitucionalHelper.GetText(Convert.ToString(Session["cultura"]), "TIT_SubArea-04_O-Escritorio"))
+                        </h2>
+                        <p>
+                            @Html.Raw(ConteudoInstitucionalHelper.GetText(Convert.ToString(Session["cultura"]), "TXT_SubArea-04-Direita_O-Escritorio"))
+                        </p>
+
+                    </div>
+                </div><!-- /col -->
+            </div><!-- /row -->
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <h2 class="title-cat">
+                        @Html.Raw(ConteudoInstitucionalHelper.GetText(Convert.ToString(Session["cultura"]), "TIT_Subarea-05_O-Escritorio"))
+
+
+
+                    </h2>
+                </div><!-- /col -->
+                <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 no-pd-lf">
+                    <p>
+                        @Html.Raw(ConteudoInstitucionalHelper.GetText(Convert.ToString(Session["cultura"]), "TXT_Subarea-05_O-Escritorio"))
+                    </p>
+
+                </div><!-- /col -->
+            </div><!-- /row -->
+        </div><!-- /container -->
+    </section><!-- /sec_razoes -->
+    <!-- ==============================================
+    Footer
+    =============================================== -->
+
+    @Html.Partial("_footer");
+
+
+</body>
+</html>
